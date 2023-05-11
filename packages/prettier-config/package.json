@@ -1,0 +1,16 @@
+{
+  "name": "@clari/prettier-config",
+  "version": "0.0.0",
+  "description": "Common Prettier settings for Clari.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/clari/web-configs.git",
+    "directory": "packages/prettier-config"
+  },
+  "license": "ISC",
+  "author": "Clari",
+  "main": "index.js",
+  "dependencies": {
+    "prettier-plugin-packagejson": "2.4.3"
+  }
+}
