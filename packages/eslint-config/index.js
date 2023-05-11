@@ -269,10 +269,21 @@ const config = {
         'jest/globals': true,
       },
       rules: {
+        'jest/no-deprecated-functions': 'warn',
+
         /**
          * @see https://github.com/dangreenisrael/eslint-plugin-jest-formatting
          */
         'jest-formatting/padding-around-all': 'error',
+
+        /**
+         * Encourage use of `userEvent` method instead of `fireEvent` when
+         * simulating user interactions.  `userEvent` simulates browser events
+         * more closely, for more realistic tests.
+         *
+         * @see https://github.com/testing-library/eslint-plugin-testing-library/blob/main/docs/rules/prefer-user-event.md
+         */
+        'testing-library/prefer-user-event': 'warn',
       },
     },
   ],

@@ -10,10 +10,24 @@ npm install --save-dev @clari/eslint-config
 
 ## Configuration
 
+Include the Clari config in your ESLint config `extends` list. Including the
+`prettier` config ensures ESLint won't yell about formatting errors that will be
+fixed automatically.
+
+The base config also includes rules for Jest test files. Make sure to configure
+the plugin for accurate reporting. If your project uses Vitest instead of Jest,
+this can be skipped; most of the Jest-related rules will still work with Vitest
+although some (like `'jest/no-deprecated-functions'`) may need to be disabled.
+
 ```js
 /** @type {import('eslint').Linter.Config} */
 const config = {
   extends: ['@clari', 'prettier'],
+  settings: {
+    jest: {
+      version: 27,
+    },
+  },
 };
 ```
 
