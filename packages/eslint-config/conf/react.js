@@ -1,3 +1,5 @@
+const importSortOrder = require('../lib/import-sorting');
+
 /** @type {import('eslint').Linter.Config} */
 const config = {
   env: {
@@ -19,6 +21,20 @@ const config = {
   ],
 
   rules: {
+    /**
+     * Group official React packages into a "framework" group that appears
+     * before other third-party packages.
+     *
+     * @see /lib/import-sorting.js
+     */
+    ...importSortOrder([
+      {
+        pattern: 'react?(-dom|-router)',
+        group: 'external',
+        position: 'before',
+      },
+    ]),
+
     /**
      * @see https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-handler-names.md
      */

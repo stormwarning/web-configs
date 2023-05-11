@@ -1,3 +1,5 @@
+const importSortOrder = require('./lib/import-sorting');
+
 /**
  * @see https://github.com/eslint/eslint/issues/3458
  * @see https://www.npmjs.com/package/@rushstack/eslint-patch
@@ -10,8 +12,21 @@ const config = {
 
   reportUnusedDisableDirectives: true,
 
-  /** @see https://eslint.org/docs/latest/rules/ */
-  extends: ['eslint:recommended'],
+  plugins: ['import'],
+
+  /**
+   * @see https://eslint.org/docs/latest/rules/
+   * @see https://github.com/import-js/eslint-plugin-import
+   */
+  extends: ['eslint:recommended', 'plugin:import/recommended'],
+
+  settings: {
+    'import/internal-regex': '^~/',
+    'import/resolver': {
+      typescript: true,
+      node: true,
+    },
+  },
 
   rules: {
     /**
@@ -219,6 +234,20 @@ const config = {
      * @see https://eslint.org/docs/latest/rules/no-void
      */
     'no-void': 'error',
+
+    /**
+     * Keep the import stack clean by importing from a single source.  Will use
+     * inline type imports in TypeScript when possible.
+     *
+     * @see https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-duplicates.md
+     */
+    'import/no-duplicates': ['error', { 'prefer-inline': true }],
+
+    /**
+     * Automatically sort import statements sensibly consistently.
+     * @see /lib/import-sorting.js
+     */
+    ...importSortOrder(),
   },
 
   overrides: [
