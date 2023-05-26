@@ -122,7 +122,18 @@ const config = {
      * @see https://typescript-eslint.io/rules/no-use-before-define/
      * @see https://eslint.org/docs/latest/rules/no-use-before-define
      */
-    '@typescript-eslint/no-use-before-define': ['error', 'nofunc'],
+    '@typescript-eslint/no-use-before-define': [
+      'error',
+      {
+        functions: false,
+        classes: true,
+        variables: true,
+        allowNamedExports: false,
+        enums: true,
+        typedefs: true,
+        ignoreTypeReferences: false,
+      },
+    ],
 
     /**
      * NOTE: Test this rule against some existing code to see if it's too
