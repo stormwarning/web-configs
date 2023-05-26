@@ -224,6 +224,15 @@ const config = {
     'no-unused-expressions': 'warn',
 
     /**
+     * Allow functions to be defined after use.  This allows small utility
+     * functions to be within the file they are used, but keeping the more
+     * "important" code at the top.
+     *
+     * @see https://eslint.org/docs/latest/rules/no-use-before-define
+     */
+    'no-use-before-define': ['error', 'nofunc'],
+
+    /**
      * Avoid a potential performance problem.
      * @see https://eslint.org/docs/latest/rules/no-useless-concat
      */

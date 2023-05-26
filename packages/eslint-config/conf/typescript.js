@@ -115,6 +115,16 @@ const config = {
     ],
 
     /**
+     * Allow functions to be defined after use.  This allows small utility
+     * functions to be within the file they are used, but keeping the more
+     * "important" code at the top.
+     *
+     * @see https://typescript-eslint.io/rules/no-use-before-define/
+     * @see https://eslint.org/docs/latest/rules/no-use-before-define
+     */
+    '@typescript-eslint/no-use-before-define': ['error', 'nofunc'],
+
+    /**
      * NOTE: Test this rule against some existing code to see if it's too
      *       strict/annoying to be worth enforcing.
      *
